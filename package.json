@@ -1,0 +1,28 @@
+{
+  "name": "history-cleaner-extension",
+  "version": "1.0.0",
+  "description": "自動清除瀏覽記錄的Chrome擴充套件",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss -i ./src/input.css -o ./styles/output.css --watch",
+    "build-css-prod": "tailwindcss -i ./src/input.css -o ./styles/output.css --minify",
+    "dev": "npm run build-css",
+    "build": "npm run build-css-prod",
+    "clean": "rm -f generate-icons.js && rm -f icons/generate-icons.html",
+    "package": "npm run build && npm run clean"
+  },
+  "keywords": [
+    "chrome-extension",
+    "history",
+    "cleaner",
+    "privacy"
+  ],
+  "author": "Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "canvas": "^3.2.0"
+  }
+}
