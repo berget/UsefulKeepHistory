@@ -23,11 +23,10 @@
                     
                     <!-- 啟用狀態 -->
                     <div class="mb-6">
-                        <label class="flex items-center cursor-pointer">
+                        <label class="flex items-center cursor-pointer group">
                             <input type="checkbox" id="enableToggle" class="sr-only">
-                            <div id="switch-button" class="relative">
-                                <div class="block bg-gray-300 w-14 h-7 rounded-full"></div>
-                                <div class="dot absolute left-1 top-1 bg-white w-5 h-5 rounded-full transition transform shadow"></div>
+                            <div id="switch-button" class="relative inline-flex h-7 w-12 items-center rounded-full bg-gray-200 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group-hover:bg-gray-300">
+                                <span class="dot inline-block h-5 w-5 transform rounded-full bg-white transition-transform duration-300 ease-in-out shadow-lg ring-0 translate-x-1"></span>
                             </div>
                             <div class="ml-3">
                                 <span class="text-gray-800 font-medium">啟用自動清理</span>

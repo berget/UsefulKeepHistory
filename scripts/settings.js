@@ -93,17 +93,19 @@ function updateUI() {
     enableToggle.checked = currentSettings.enabled || false;
     
     // 更新切換開關外觀
-    const toggleContainer = enableToggle.parentElement.querySelector('div');
+    const toggleContainer = enableToggle.parentElement.querySelector('#switch-button');
     const dot = toggleContainer.querySelector('.dot');
     
     if (currentSettings.enabled) {
-        toggleContainer.classList.remove('bg-gray-300');
-        toggleContainer.classList.add('bg-primary-500');
-        dot.style.transform = 'translateX(1.75rem)';
+        toggleContainer.classList.remove('bg-gray-200', 'group-hover:bg-gray-300');
+        toggleContainer.classList.add('bg-blue-600');
+        dot.classList.remove('translate-x-1');
+        dot.classList.add('translate-x-6');
     } else {
-        toggleContainer.classList.remove('bg-primary-500');
-        toggleContainer.classList.add('bg-gray-300');
-        dot.style.transform = 'translateX(0)';
+        toggleContainer.classList.remove('bg-blue-600');
+        toggleContainer.classList.add('bg-gray-200', 'group-hover:bg-gray-300');
+        dot.classList.remove('translate-x-6');
+        dot.classList.add('translate-x-1');
     }
 
     // 更新時間設定區域

@@ -20,11 +20,10 @@
         <!-- 主要控制區 -->
         <div class="card mb-4">
             <div class="flex items-center justify-between mb-4">
-                <label class="flex items-center cursor-pointer">
+                <label class="flex items-center cursor-pointer group">
                     <input type="checkbox" id="enableToggle" class="sr-only">
-                    <div id="switch-button" class="relative">
-                        <div class="block bg-gray-300 w-12 h-6 rounded-full"></div>
-                        <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform"></div>
+                    <div id="switch-button" class="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group-hover:bg-gray-300">
+                        <span class="dot inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300 ease-in-out shadow-lg ring-0 translate-x-1"></span>
                     </div>
                     <span class="ml-3 text-gray-700 font-medium">啟用自動清理</span>
                 </label>
