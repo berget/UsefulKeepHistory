@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UsefulKeep History - 設定</title>
+    <link rel="stylesheet" href="styles/output.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto max-w-4xl py-8 px-4">
+        <!-- 標題區 -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">UsefulKeep History 設定</h1>
+            <p class="text-gray-600">管理您的瀏覽記錄清理設定和白名單</p>
+        </div>
+
+        <!-- 主要設定區 -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- 左側 - 基本設定 -->
+            <div class="lg:col-span-1">
+                <div class="card">
+                    <h2 class="section-title">基本設定</h2>
+                    
+                    <!-- 啟用狀態 -->
+                    <div class="mb-6">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" id="enableToggle" class="sr-only">
+                            <div id="switch-button" class="relative">
+                                <div class="block bg-gray-300 w-14 h-7 rounded-full"></div>
+                                <div class="dot absolute left-1 top-1 bg-white w-5 h-5 rounded-full transition transform shadow"></div>
+                            </div>
+                            <div class="ml-3">
+                                <span class="text-gray-800 font-medium">啟用自動清理</span>
+                                <p class="text-sm text-gray-600">定時自動清理瀏覽記錄</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 時間設定 -->
+                    <div id="timeSettings" class="space-y-4 transition-opacity duration-200">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">清理間隔</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="number" id="intervalInput" min="1" max="999" value="60" 
+                                       class="input-field" placeholder="數值">
+                                <select id="unitSelect" class="input-field">
+                                    <option value="minutes">分鐘</option>
+                                    <option value="hours">小時</option>
+                                    <option value="days">天</option>
+                                </select>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">最小單位：分鐘，最大單位：天</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <p id="nextCleanupInfo" class="text-sm text-blue-700"></p>
+                        </div>
+                    </div>
+
+                    <!-- 操作按鈕 -->
+                    <div class="mt-6 space-y-3">
+                        <button id="saveButton" class="btn btn-primary w-full">
+                            儲存設定
+                        </button>
+                        <button id="manualCleanButton" class="btn btn-danger w-full">
+                            立即清理
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右側 - 白名單管理 -->
+            <div class="lg:col-span-2">
+                <div class="card">
+                    <h2 class="section-title">白名單管理</h2>
+                    
+                    <!-- 新增白名單 -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">新增網域到白名單</label>
+                        <div class="flex space-x-2">
+                            <input type="text" id="newDomainInput" placeholder="例如：google.com" 
+                                   class="input-field flex-1">
+                            <button id="addDomainButton" class="btn btn-primary">
+                                新增
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">
+                            輸入網域名稱（不需要 http:// 或 www.），子網域也會自動包含
+                        </p>
+                    </div>
+
+                    <!-- 快速新增建議 -->
+                    <div class="mb-6">
+                        <p class="text-sm font-medium text-gray-700 mb-2">常用網站快速新增</p>
+                        <div class="flex flex-wrap gap-2" id="suggestedDomains">
+                            <button class="suggested-domain px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" data-domain="google.com">Google</button>
+                            <button class="suggested-domain px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" data-domain="youtube.com">YouTube</button>
+                            <button class="suggested-domain px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" data-domain="github.com">GitHub</button>
+                            <button class="suggested-domain px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" data-domain="stackoverflow.com">Stack Overflow</button>
+                            <button class="suggested-domain px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" data-domain="wikipedia.org">Wikipedia</button>
+                        </div>
+                    </div>
+
+                    <!-- 白名單清單 -->
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <p class="text-sm font-medium text-gray-700">已保護的網域</p>
+                            <span id="whitelistCount" class="text-sm text-gray-500">0 個網域</span>
+                        </div>
+                        
+                        <div id="whitelistContainer" class="space-y-2 max-h-60 overflow-y-auto">
+                            <!-- 白名單項目會動態插入這裡 -->
+                        </div>
+                        
+                        <div id="emptyWhitelist" class="text-center py-8 text-gray-500 hidden">
+                            <p class="mb-2">還沒有任何白名單網域</p>
+                            <p class="text-sm">新增網域以保護重要的瀏覽記錄</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 狀態訊息 -->
+        <div id="statusMessage" class="mt-6 p-4 rounded-lg text-sm hidden">
+        </div>
+
+        <!-- 說明區域 -->
+        <div class="mt-8 card">
+            <h3 class="section-title">使用說明</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600">
+                <div>
+                    <h4 class="font-medium text-gray-800 mb-2">自動清理功能</h4>
+                    <ul class="space-y-1 list-disc list-inside">
+                        <li>定時自動清理瀏覽記錄</li>
+                        <li>可設定清理間隔（分鐘/小時/天）</li>
+                        <li>尊重白名單設定</li>
+                        <li>清理完成會顯示通知</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium text-gray-800 mb-2">白名單功能</h4>
+                    <ul class="space-y-1 list-disc list-inside">
+                        <li>保護重要網站的瀏覽記錄</li>
+                        <li>支援主網域和所有子網域</li>
+                        <li>可隨時新增或移除</li>
+                        <li>提供常用網站快速新增</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/settings.js"></script>
+</body>
+</html>

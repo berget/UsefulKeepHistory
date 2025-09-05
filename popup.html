@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UsefulKeep History</title>
+    <link rel="stylesheet" href="styles/output.css">
+</head>
+<body class="w-80 bg-gray-50">
+    <div class="p-4">
+        <!-- 標題 -->
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-xl font-bold text-gray-800">UsefulKeep History</h1>
+            <div class="flex items-center space-x-2">
+                <div id="statusIndicator" class="w-3 h-3 rounded-full bg-gray-400"></div>
+                <span id="statusText" class="text-sm text-gray-600">已停用</span>
+            </div>
+        </div>
+
+        <!-- 主要控制區 -->
+        <div class="card mb-4">
+            <div class="flex items-center justify-between mb-4">
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" id="enableToggle" class="sr-only">
+                    <div id="switch-button" class="relative">
+                        <div class="block bg-gray-300 w-12 h-6 rounded-full"></div>
+                        <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform"></div>
+                    </div>
+                    <span class="ml-3 text-gray-700 font-medium">啟用自動清理</span>
+                </label>
+            </div>
+
+            <!-- 時間設定 -->
+            <div id="timeSettings" class="space-y-4 opacity-50 transition-opacity duration-200">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">清理間隔</label>
+                    <div class="flex space-x-2">
+                        <input type="number" id="intervalInput" min="1" max="999" value="60" 
+                               class="input-field flex-1">
+                        <select id="unitSelect" class="input-field w-24">
+                            <option value="minutes">分鐘</option>
+                            <option value="hours">小時</option>
+                            <option value="days">天</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 白名單資訊 -->
+        <div class="card mb-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="font-medium text-gray-800">白名單網域</h3>
+                    <p id="whitelistCount" class="text-sm text-gray-600">0 個網域已保護</p>
+                </div>
+                <button id="openSettings" class="btn btn-secondary text-sm">
+                    管理
+                </button>
+            </div>
+        </div>
+
+        <!-- 操作按鈕 -->
+        <div class="space-y-3">
+            <button id="saveButton" class="btn btn-primary w-full">
+                儲存設定
+            </button>
+            <button id="manualCleanButton" class="btn btn-danger w-full">
+                立即清理
+            </button>
+        </div>
+
+        <!-- 狀態訊息 -->
+        <div id="statusMessage" class="mt-4 p-3 rounded-lg text-sm hidden">
+        </div>
+    </div>
+
+    <script src="scripts/popup.js"></script>
+</body>
+</html>
