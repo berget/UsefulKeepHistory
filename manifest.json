@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "UsefulKeep History",
+  "version": "1.0.0",
+  "description": "可設定定時自動清除 Chrome 瀏覽紀錄的擴充套件，支援排程與手動清除、指定時間範圍、網站白名單/例外、以及儲存使用者設定與通知功能，易於設定與管理。",
+  
+  "permissions": [
+    "history",
+    "storage",
+    "alarms",
+    "activeTab"
+  ],
+  
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  
+    "action": {
+    "default_popup": "popup.html",
+    "default_title": "UsefulKeep History",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  
+  "options_page": "settings.html",
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
